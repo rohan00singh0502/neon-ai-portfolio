@@ -21,11 +21,17 @@ const AchievementsSection = () => (
           whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-card rounded-lg p-8 text-center"
+          whileHover={{ y: -6, transition: { duration: 0.25 } }}
+          className="glass-card rounded-lg p-8 text-center animate-swing hover:animate-shake"
+          style={{ transformOrigin: "top center" }}
         >
-          <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-5 animate-glow-pulse">
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+            className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-5 animate-dot-pulse"
+          >
             <a.icon className="text-primary" size={22} />
-          </div>
+          </motion.div>
           <h3 className="font-heading text-base font-semibold mb-2">{a.title}</h3>
           <p className="text-muted-foreground text-sm leading-relaxed">{a.desc}</p>
         </motion.div>
