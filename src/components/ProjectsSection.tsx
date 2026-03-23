@@ -33,10 +33,14 @@ const ProjectsSection = () => (
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-card rounded-lg p-8 flex flex-col"
+          whileHover={{
+            scale: 1.03,
+            transition: { duration: 0.25 },
+          }}
+          className="glass-card rounded-lg p-8 flex flex-col relative scan-line neon-trace overflow-hidden group"
         >
           <div className="w-full h-1 rounded-full bg-gradient-to-r from-primary/60 to-transparent mb-6" />
-          <h3 className="font-heading text-xl font-bold mb-3">{p.title}</h3>
+          <h3 className="font-heading text-xl font-bold mb-3 group-hover:animate-shake">{p.title}</h3>
           <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-1">{p.desc}</p>
           <div className="flex flex-wrap gap-2 mb-6">
             {p.tech.map((t) => (
@@ -45,7 +49,7 @@ const ProjectsSection = () => (
               </span>
             ))}
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 relative z-10">
             <a href="#" className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors active:scale-95">
               <ExternalLink size={14} /> Live Demo
             </a>
