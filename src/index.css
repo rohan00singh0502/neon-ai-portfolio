@@ -277,6 +277,7 @@
 @keyframes circuit-flow {
   0% { stroke-dashoffset: 1000; }
   100% { stroke-dashoffset: 0; }
+}
 
 @keyframes ripple-expand {
   0% { width: 10px; height: 10px; opacity: 1; }
