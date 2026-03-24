@@ -14,6 +14,8 @@ import LoadingScreen from "@/components/LoadingScreen";
 import MatrixRain from "@/components/MatrixRain";
 import FloatingParticles from "@/components/FloatingParticles";
 import SystemError from "@/components/SystemError";
+import AIChatbot from "@/components/AIChatbot";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const Index = () => {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +28,7 @@ const Index = () => {
       <GridBackground />
       <FloatingParticles />
       <CursorGlow />
+      <ScrollProgress />
       {loaded && <SystemError />}
       <Navbar />
       <HeroSection />
@@ -36,6 +39,7 @@ const Index = () => {
       <AchievementsSection />
       <ContactSection />
       <Footer />
+      <AIChatbot />
     </div>
   );
 };

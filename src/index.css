@@ -279,6 +279,11 @@
   100% { stroke-dashoffset: 0; }
 }
 
+@keyframes ripple-expand {
+  0% { width: 10px; height: 10px; opacity: 1; }
+  100% { width: 150px; height: 150px; opacity: 0; }
+}
+
 /* Register custom property for conic-gradient animation */
 @property --trace-angle {
   syntax: '<angle>';
