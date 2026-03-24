@@ -11,6 +11,9 @@ import Footer from "@/components/Footer";
 import GridBackground from "@/components/GridBackground";
 import CursorGlow from "@/components/CursorGlow";
 import LoadingScreen from "@/components/LoadingScreen";
+import MatrixRain from "@/components/MatrixRain";
+import FloatingParticles from "@/components/FloatingParticles";
+import SystemError from "@/components/SystemError";
 
 const Index = () => {
   const [loaded, setLoaded] = useState(false);
@@ -19,8 +22,11 @@ const Index = () => {
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
       {!loaded && <LoadingScreen onComplete={handleComplete} />}
+      <MatrixRain />
       <GridBackground />
+      <FloatingParticles />
       <CursorGlow />
+      {loaded && <SystemError />}
       <Navbar />
       <HeroSection />
       <AboutSection />
