@@ -16,6 +16,7 @@ import FloatingParticles from "@/components/FloatingParticles";
 import SystemError from "@/components/SystemError";
 import AIChatbot from "@/components/AIChatbot";
 import ScrollProgress from "@/components/ScrollProgress";
+import DecorativeImages from "@/components/DecorativeImages";
 
 const Index = () => {
   const [loaded, setLoaded] = useState(false);
@@ -27,6 +28,7 @@ const Index = () => {
       <MatrixRain />
       <GridBackground />
       <FloatingParticles />
+      <DecorativeImages />
       <CursorGlow />
       <ScrollProgress />
       {loaded && <SystemError />}
