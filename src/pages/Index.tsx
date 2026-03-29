@@ -28,6 +28,7 @@ const Index = () => {
       <MatrixRain />
       <GridBackground />
       <FloatingParticles />
+      <DecorativeImages />
       <CursorGlow />
       <ScrollProgress />
       {loaded && <SystemError />}
