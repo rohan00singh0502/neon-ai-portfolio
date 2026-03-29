@@ -2,10 +2,77 @@ import SectionWrapper from "./SectionWrapper";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const categories = [
-  { title: "Languages", skills: ["C++", "Python", "JavaScript", "C"] },
-  { title: "Frameworks", skills: ["React", "Next.js", "Node.js", "Express"] },
-  { title: "Tools & Platforms", skills: ["Docker", "GitHub", "Prisma", "Vercel"] },
+  {
+    title: "Languages",
+    skills: [
+      { name: "C++", level: 90 },
+      { name: "Python", level: 85 },
+      { name: "JavaScript", level: 88 },
+      { name: "C", level: 75 },
+    ],
+  },
+  {
+    title: "Frameworks",
+    skills: [
+      { name: "React", level: 92 },
+      { name: "Next.js", level: 80 },
+      { name: "Node.js", level: 78 },
+      { name: "Express", level: 76 },
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    skills: [
+      { name: "Docker", level: 70 },
+      { name: "GitHub", level: 90 },
+      { name: "Prisma", level: 72 },
+      { name: "Vercel", level: 85 },
+    ],
+  },
 ];
+
+const EnergyBar = ({ name, level, delay }: { name: string; level: number; delay: number }) => (
+  <div className="space-y-1.5">
+    <div className="flex items-center justify-between">
+      <span className="text-sm text-foreground font-medium">{name}</span>
+      <motion.span
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: delay + 0.5 }}
+        className="text-xs font-heading text-primary tabular-nums"
+      >
+        {level}%
+      </motion.span>
+    </div>
+    <div className="h-2 rounded-full bg-secondary/80 overflow-hidden border border-border/50">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${level}%` }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+        className="h-full rounded-full relative"
+        style={{
+          background: `linear-gradient(90deg, hsl(342 100% 59% / 0.6), hsl(342 100% 59%))`,
+          boxShadow: level > 80
+            ? "0 0 12px hsl(342 100% 59% / 0.6), 0 0 24px hsl(342 100% 59% / 0.3)"
+            : "0 0 8px hsl(342 100% 59% / 0.4)",
+        }}
+      >
+        {/* Shimmer effect */}
+        <motion.div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: "linear-gradient(90deg, transparent 0%, hsl(0 0% 100% / 0.15) 50%, transparent 100%)",
+            backgroundSize: "200% 100%",
+          }}
+          animate={{ backgroundPosition: ["-200% 0", "200% 0"] }}
+          transition={{ duration: 2, repeat: Infinity, delay: delay + 1.2, ease: "linear" }}
+        />
+      </motion.div>
+    </div>
+  </div>
+);
 
 const TiltCard = ({ cat, ci }: { cat: typeof categories[0]; ci: number }) => {
   const x = useMotionValue(0);
@@ -36,23 +103,13 @@ const TiltCard = ({ cat, ci }: { cat: typeof categories[0]; ci: number }) => {
       whileHover={{ y: -10 }}
       className="glass-card rounded-lg p-8 scan-line neon-trace overflow-hidden"
     >
-      <h3 className="font-heading text-sm uppercase tracking-[0.2em] text-primary mb-6">{cat.title}</h3>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-2 h-2 rounded-full bg-primary animate-dot-pulse" />
+        <h3 className="font-heading text-sm uppercase tracking-[0.2em] text-primary">{cat.title}</h3>
+      </div>
+      <div className="space-y-4">
         {cat.skills.map((s, si) => (
-          <motion.span
-            key={s}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: ci * 0.1 + si * 0.05 }}
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 0 16px hsl(342 100% 59% / 0.5)",
-            }}
-            className="px-4 py-2 rounded-md border border-primary/20 text-sm text-foreground bg-primary/5 hover:bg-primary/15 hover:border-primary/50 transition-all duration-200 active:scale-95 cursor-default"
-          >
-            {s}
-          </motion.span>
+          <EnergyBar key={s.name} name={s.name} level={s.level} delay={ci * 0.1 + si * 0.1} />
         ))}
       </div>
     </motion.div>
@@ -61,9 +118,12 @@ const TiltCard = ({ cat, ci }: { cat: typeof categories[0]; ci: number }) => {
 
 const SkillsSection = () => (
   <SectionWrapper id="skills">
-    <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-14">
+    <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
       My <span className="neon-text">Skills</span>
     </h2>
+    <p className="text-muted-foreground text-center text-sm mb-14 font-mono">
+      &gt; system.skills.scan() — proficiency_levels_loaded
+    </p>
     <div className="grid md:grid-cols-3 gap-8">
       {categories.map((cat, ci) => (
         <TiltCard key={cat.title} cat={cat} ci={ci} />
