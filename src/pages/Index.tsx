@@ -6,6 +6,9 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import EducationSection from "@/components/EducationSection";
 import AchievementsSection from "@/components/AchievementsSection";
+import TrainingsSection from "@/components/TrainingsSection";
+import CodingProfilesSection from "@/components/CodingProfilesSection";
+import CertificatesSection from "@/components/CertificatesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import GridBackground from "@/components/GridBackground";
@@ -39,6 +42,9 @@ const Index = () => {
       <ProjectsSection />
       <EducationSection />
       <AchievementsSection />
+      <TrainingsSection />
+      <CodingProfilesSection />
+      <CertificatesSection />
       <ContactSection />
       <Footer />
       <AIChatbot />
